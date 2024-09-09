@@ -34,6 +34,11 @@ export const banner = defineType({
         }),
         defineField({
             type: "string",
+            name: "midText",
+            title: "Medium Text"
+        }),
+        defineField({
+            type: "string",
             name: "largeText1",
             title: "Large Text 1"
         }),
