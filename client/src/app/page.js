@@ -3,6 +3,10 @@ import React from 'react'
 import { Product, FooterBanner, HeroBanner } from "../components";
 import { client } from "../lib/client"; 
 
+export const revalidate = 60
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 const page = async () => {
   const productsQuery = '*[_type == "product"]';
   const products = await client.fetch(productsQuery);
@@ -25,7 +29,7 @@ const page = async () => {
         }
       </div>
 
-      <FooterBanner/> 
+      <FooterBanner data={bannerData.length > 0 && bannerData[0]}/> 
     </>
   )
 }
