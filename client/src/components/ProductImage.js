@@ -16,7 +16,7 @@ const ProductImage = ({image}) => {
         <img src={urlFor(image[imgIndex]).url()} alt="product" className="product-detail-image" />
         <div className="small-images-container">
             {image.map((item, i) => (
-                <img onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className="small-image" />
+                <img onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className={`small-image ${i === imgIndex ? 'selected-image' : ''}`} />
             ))}
         </div>
     </div>

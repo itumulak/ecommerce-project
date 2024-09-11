@@ -5,12 +5,13 @@ import { client } from "../../../lib/client";
 import { AiFillStar, AiOutlineStar, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Product } from '@/components';
 import ProductImage from '@/components/ProductImage';
+import ProductQty from '@/components/ProductQty';
 
 const page = async ({ params: { slug } }) => {
   const productQuery = groq`
     *[_type == "product" && slug.current == $slug][0]
   `
-  const { mainImage: image, title, price, description, productCategory } = await client.fetch(productQuery, {slug});
+  const { _id, mainImage: image, title, price, description, productCategory } = await client.fetch(productQuery, {slug});
   const recommendedQuery = groq`*[_type == "product" && productCategory._ref == $productCategory._ref && slug.current != $slug]`;
   const recommendedProducts = await client.fetch(recommendedQuery, {productCategory, slug});  
 
@@ -32,18 +33,7 @@ const page = async ({ params: { slug } }) => {
         <h4>Details:</h4>
         <p>{description}</p>
         <p className="price">${price}</p>
-        <div className="quantity">
-          <h3>Quantity:</h3>
-          <p className="quantity-desc flex flex-row items-center">
-            <span className="text-red-600"><AiOutlineMinus /></span>
-            <span className="font-semibold">0</span>
-            <span className="text-green-500"><AiOutlinePlus /></span>
-          </p>
-          <div className="buttons">
-            <button className="add-to-cart">Add to Cart</button>
-            <button className="buy-now">Buy Now</button>
-          </div>
-        </div>
+        <ProductQty data={{ _id, title, price }} />
         <div className="maylike-products-wrapper">
           <h2>You may also like</h2>
           <div className="marquee">
