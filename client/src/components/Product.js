@@ -3,11 +3,11 @@ import Link from "next/link"
 
 import { urlFor } from "../lib/client";
 
-const Product = ({data: { _id: key, mainImage: image, title, slug, price }}) => {
+const Product = ({data: { _id, mainImage: image, title, slug, price }}) => {
   return (
-    <div key={key}>
+    <div key={_id}>
       <Link href={`/product/${slug.current}`}>
-        <img width="300" height="300" src={urlFor(image).url()} alt={title} className="product-image" />
+        <img width="300" height="300" src={urlFor(image[0]).url()} alt={title} className="product-image" />
         <p className="product-name">{title}</p>
         <p className="product-price">${price}</p>
       </Link>

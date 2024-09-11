@@ -21,9 +21,9 @@ export const product = defineType({
       name: "description",
     }),
     defineField({
-      type: "image",
+      type: "array",
       name: "mainImage",
-      options: { hotspot: true },
+      of: [{type: "image", options: { hotspot: true }}],
     }),
     defineField({
       type: "number",

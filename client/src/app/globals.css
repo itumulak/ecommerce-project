@@ -558,10 +558,6 @@ span.text-red {
   margin-top: 10px;
 }
 
-.product-detail-desc p {
-  margin-top: 10px;
-}
-
 .reviews p {
   color: #324d67;
   margin-top: 0px;
@@ -590,13 +586,12 @@ span.text-red {
 
 .product-detail-desc .buttons {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .buttons .add-to-cart {
   padding: 10px 20px;
   border: 1px solid #f02d34;
-  margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
   background-color: white;
@@ -613,12 +608,10 @@ span.text-red {
 
 .buttons .buy-now {
   width: 200px;
-
   padding: 10px 20px;
   background-color: #f02d34;
   color: white;
   border: none;
-  margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
