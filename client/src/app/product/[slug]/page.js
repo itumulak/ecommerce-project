@@ -33,7 +33,7 @@ const page = async ({ params: { slug } }) => {
         <h4>Details:</h4>
         <p>{description}</p>
         <p className="price">${price}</p>
-        <ProductQty data={{ _id, title, price }} />
+        <ProductQty data={{ _id, title, price, image }} />
         <div className="maylike-products-wrapper">
           <h2>You may also like</h2>
           <div className="marquee">

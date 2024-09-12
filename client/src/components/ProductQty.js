@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { addProduct } from '@/redux/slices/cartSlice';
 
-const ProductQty = ({data: {_id, title, price}}) => {
+const ProductQty = ({data: {_id, title, price, image}}) => {
     const dispatch = useDispatch()
     const [qty, setQty] = useState(1)
 
@@ -22,7 +22,7 @@ const ProductQty = ({data: {_id, title, price}}) => {
     }
 
     const handleAddToCart = () => {
-        dispatch(addProduct({ _id, title, price, quantity: qty }))
+        dispatch(addProduct({ _id, title, price, quantity: qty, image }))
         console.log("added to cart");
     }
 
