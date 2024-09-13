@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { urlFor } from '@/lib/client'
 import Qty from './Qty'
-import { updateQty } from '@/redux/slices/cartSlice'
+import { removeProduct, updateQty } from '@/redux/slices/cartSlice'
+import { AiOutlineDelete } from 'react-icons/ai'
 
 const CartList = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,10 @@ const CartList = () => {
   useEffect(() => {
     setCartTotal(products.reduce((acc, item) => acc + item.price * item.quantity, 0))
   }, [products])
+
+  const handleRemoveItem = (id) => {
+    dispatch(removeProduct(id))
+  }
 
   return (
     products.length > 0 ? (
@@ -43,23 +48,29 @@ const CartList = () => {
                   </td>
                   <td>{product.price}</td>
                   <td>
-                    <Qty quantity={product.quantity} setQuantity={(qty) => handleProductQtyUpdate(product._id, qty)}/>
+                    <div className="flex flex-row items-center gap-4">
+                      <Qty quantity={product.quantity} setQuantity={(qty) => handleProductQtyUpdate(product._id, qty)}/>
+                      <button className="remove-item mr-auto" onClick={() => handleRemoveItem(product._id)}>
+                        <AiOutlineDelete/>
+                      </button>
+                    </div>
                   </td>
                   <td>{(product.price * product.quantity).toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="flex flex-col gap-y-4 p-4 w-1/3 border-2 border-gray-500 rounded h-[300px]">
+          <div className="flex flex-col gap-y-4 px-6 py-8 w-1/3 border-2 border-gray-500 rounded">
             <h3 className="text-lg font-bold">Cart Totals</h3>
             <p className="flex flex-row items-center justify-between">
               <span>Delivery Charge</span>
               <span>$0</span>
             </p>
             <p className="flex flex-row items-center justify-between">
-              <span>Total</span>
-              <span>${cartTotal.toFixed(2)}</span>
+              <span className="font-bold">Total</span>
+              <span className="font-bold">${cartTotal.toFixed(2)}</span>
             </p>
+            <button className="bg-[#f02d34] text-white text-lg py-2 text-center w-full rounded">Checkout</button>
           </div>
         </>
       ): (
