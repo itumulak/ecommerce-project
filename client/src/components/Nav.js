@@ -9,21 +9,27 @@ import Cart from './Cart';
 import { toggleCart } from '@/redux/slices/cartSlice';
 
 const Nav = () => {
-  const dispatch = useDispatch()
   const products = useSelector(state => state.cart.products)
-  const showCart = useSelector(state => state.cart.showCart)
+  const [showCart, setShowCart] = useState(false)
+  
 
+  const handleToggle = () => {
+    setShowCart(!showCart)
+  }
+  
   return (
     <div className="navbar-container">
       <p className="logo">
         <Link href="/">E-commerce</Link>
       </p>
-      <button type="button" className="cart-icon" onClick={() => dispatch(toggleCart(true))}>
+      <button 
+        className="cart-icon" 
+        onClick={handleToggle}
+      >
         <AiOutlineShopping />
-        <span className="cart-item-qty absolute top-0">{products.length || 0}</span>
       </button>
 
-      {showCart && <Cart />}
+      {showCart && <Cart handleToggle={handleToggle} />}
     </div>
   )
 }

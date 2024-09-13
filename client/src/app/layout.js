@@ -26,12 +26,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>
+        <header className="h-16">
           <ReduxProvider>
             <Nav/>
           </ReduxProvider>
         </header>
-        <main className="main-container">
+        <main className="main-container px-12">
           <ReduxProvider>
             {children}
           </ReduxProvider>

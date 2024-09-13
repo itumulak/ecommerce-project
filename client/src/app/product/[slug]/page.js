@@ -12,7 +12,7 @@ const page = async ({ params: { slug } }) => {
     *[_type == "product" && slug.current == $slug][0]
   `
   const { _id, mainImage: image, title, price, description, productCategory } = await client.fetch(productQuery, {slug});
-  const recommendedQuery = groq`*[_type == "product" && productCategory._ref == $productCategory._ref && slug.current != $slug]`;
+  const recommendedQuery = groq`*[_type == "product" && slug.current != $slug]`;
   const recommendedProducts = await client.fetch(recommendedQuery, {productCategory, slug});  
 
   return (

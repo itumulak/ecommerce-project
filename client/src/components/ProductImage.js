@@ -13,12 +13,14 @@ const ProductImage = ({image}) => {
 
   return (
     <div className="image-container">
-        <img src={urlFor(image[imgIndex]).url()} alt="product" className="product-detail-image" />
-        <div className="small-images-container">
-            {image.map((item, i) => (
-                <img onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className={`small-image ${i === imgIndex ? 'selected-image' : ''}`} />
-            ))}
-        </div>
+        <img src={Array.isArray(image) ? urlFor(image[imgIndex]).url() : urlFor(image).url()} alt="product" className="product-detail-image" />
+        {Array.isArray(image) && image.length > 1 && (
+          <div className="small-images-container">
+              {image.map((item, i) => (
+                  <img onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className={`small-image ${i === imgIndex ? 'selected-image' : ''}`} />
+              ))}
+          </div>
+        )}        
     </div>
   )
 }

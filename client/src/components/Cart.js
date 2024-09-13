@@ -3,53 +3,43 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
-import { AiOutlineLeft, AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from 'react-icons/ai'
+import { AiOutlineLeft, AiOutlineDelete } from 'react-icons/ai'
 
 import { removeProduct, toggleCart, updateQty } from '@/redux/slices/cartSlice'
 import { urlFor } from '@/lib/client'
+import Qty from './Qty'
 
-const Cart = () => {
+const Cart = ({handleToggle}) => {
   const dispatch = useDispatch()
   const cartItems = useSelector(state => state.cart.products)
-  const totalQty = useSelector(state => state.cart.totalQty)
-  const subTotal = useSelector(state => state.cart.subTotal)
+  const [totalProducts, setTotalProducts] = useState(0)
+  const [subTotal, setSubTotal] = useState(0)
 
-  const handleChangeQty = (type, id) => {
-    cartItems.find(item => {
-      let qty = item.quantity; 
-
-      if (item._id === id) {
-        if (type === "inc") {
-          qty += 1        
-        } else if (type === "dec") {
-          if (item.quantity - 1 < 1) {
-            qty = 1
-          }
-          else {
-            qty -= 1
-          }
-        }
-      }
-
-      dispatch(updateQty({ _id: id, quantity: qty }))
-    })
-  }
 
   const handleRemoveItem = (id) => {
     dispatch(removeProduct(id))
   }
+
+  const handleUpdateQty = (id, qty) => {
+    dispatch(updateQty({id, quantity: qty}))
+  }
+
+  useEffect(() => {
+    setTotalProducts(cartItems.length)
+    setSubTotal(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0))
+  }, [cartItems, dispatch])
   
   return (
     <div className="cart-wrapper">
       <div className="cart-container">
         <div className="flex flex-row justify-between items-center">
-          <button className="cart-heading" onClick={() => dispatch(toggleCart(false))}>
+          <button className="cart-heading" onClick={handleToggle}>
             <AiOutlineLeft/>
             <span className="heading">Your Cart</span>
-            <span className="cart-num-items">({totalQty}) items</span>
+            <span className="cart-num-items">({totalProducts}) items</span>
           </button>
-          <Link href="/" className="mr-[10px]">
-            <span className="font-semibold text-lg">View Cart</span>
+          <Link href="/cart" className="mr-[10px]">
+            <button className="font-semibold text-lg" onClick={handleToggle}>View Cart</button>
           </Link>
         </div>
 
@@ -77,12 +67,7 @@ const Cart = () => {
                     </div>
                     <div className="flex flex-row justify-between gap-x-4">
                       <div className="flex flex-row items-center gap-x-4">
-                        Qty: 
-                        <p className="quantity-desc flex flex-row items-center">
-                            <span onClick={() => handleChangeQty("dec", item._id)} className="text-red-600"><AiOutlineMinus /></span>
-                            <span className="font-semibold">{item.quantity}</span>
-                            <span onClick={() => handleChangeQty("inc", item._id)} className="text-green-500"><AiOutlinePlus /></span>
-                        </p>
+                        Qty: <Qty quantity={item.quantity} setQuantity={(qty) => handleUpdateQty(item._id, qty)} />
                       </div>
                       <button type="button" className="remove-item" onClick={() => handleRemoveItem(item._id)}>
                         <AiOutlineDelete />
