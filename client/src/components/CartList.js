@@ -7,6 +7,7 @@ import { urlFor } from '@/lib/client'
 import Qty from './Qty'
 import { removeProduct, updateQty } from '@/redux/slices/cartSlice'
 import { AiOutlineDelete } from 'react-icons/ai'
+import Link from 'next/link'
 
 const CartList = () => {
   const dispatch = useDispatch()
@@ -70,7 +71,9 @@ const CartList = () => {
               <span className="font-bold">Total</span>
               <span className="font-bold">${cartTotal.toFixed(2)}</span>
             </p>
-            <button className="bg-[#f02d34] text-white text-lg py-2 text-center w-full rounded">Checkout</button>
+            <Link href="/checkout">
+              <button className="bg-[#f02d34] text-white text-lg py-2 text-center w-full rounded">Checkout</button>
+            </Link>
           </div>
         </>
       ): (

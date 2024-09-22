@@ -47,7 +47,7 @@ const Cart = ({handleToggle}) => {
           <div className="empty-cart">
             <h3>Your cart is empty</h3>
             <Link href="/">
-              <button type="button" className="btn" onClick={() => dispatch(toggleCart(false))}>
+              <button type="button" className="btn" onClick={handleToggle}>
                 Continue Shopping
               </button>
             </Link>
@@ -70,7 +70,7 @@ const Cart = ({handleToggle}) => {
                         Qty: <Qty quantity={item.quantity} setQuantity={(qty) => handleUpdateQty(item._id, qty)} />
                       </div>
                       <button type="button" className="remove-item" onClick={() => handleRemoveItem(item._id)}>
-                        <AiOutlineDelete />
+                        <AiOutlineDelete/>
                       </button>
                     </div>
                   </div>                  
@@ -82,7 +82,9 @@ const Cart = ({handleToggle}) => {
                 <span className="uppercase">Subtotal:</span>
                 <span>${subTotal.toFixed(2)}</span>
               </div>
-              <button className="w-full text-center bg-[#f02d34] text-white py-2 text-lg">Checkout</button>
+              <Link href="/checkout">
+                <button className="w-full text-center bg-[#f02d34] text-white py-2 text-lg">Checkout</button>
+              </Link>              
             </div>
           </div>
         )}

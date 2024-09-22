@@ -15,16 +15,20 @@ const ProductQty = ({data}) => {
         
         return 1
     }))
-    const [quantity, setQuantity] = useState(productQty ? productQty.quantity : 1)
+    const [quantity, setQuantity] = useState(1)
     
     const handleAddToCart = () => {
         dispatch(addProduct({ ...data, quantity }))        
     }
 
+    const handleQuantityUpdate = (qty) => {
+        setQuantity(qty)
+    }
+
     return (
         <div className="quantity">
             <h3>Quantity:</h3>
-            <Qty quantity={quantity} setQuantity={setQuantity}/>
+            <Qty quantity={quantity} setQuantity={handleQuantityUpdate}/>
             <div className="buttons">
                 <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
                 <button className="buy-now">Buy Now</button>

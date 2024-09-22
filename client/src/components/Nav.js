@@ -1,16 +1,15 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { AiOutlineShopping } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
 
 import Cart from './Cart';
-import { toggleCart } from '@/redux/slices/cartSlice';
 
 const Nav = () => {
   const products = useSelector(state => state.cart.products)
-  const [showCart, setShowCart] = useState(false)
+  const [showCart, setShowCart] = useState(false)  
   
 
   const handleToggle = () => {
@@ -23,10 +22,11 @@ const Nav = () => {
         <Link href="/">E-commerce</Link>
       </p>
       <button 
-        className="cart-icon" 
+        className="cart-icon flex flex-row" 
         onClick={handleToggle}
       >
-        <AiOutlineShopping />
+        <AiOutlineShopping fill={`#f02d34`} />
+        <span className="cart-item-qty">{products.length || 0}</span>
       </button>
 
       {showCart && <Cart handleToggle={handleToggle} />}
