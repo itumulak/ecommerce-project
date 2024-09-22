@@ -2,7 +2,6 @@ import localFont from "next/font/local"
 import dynamic from 'next/dynamic';
 import "./globals.css";
 
-import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ReduxProvider from "@/components/ReduxProvider";
 
