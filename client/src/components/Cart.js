@@ -12,9 +12,7 @@ import Qty from './Qty'
 const Cart = ({handleToggle}) => {
   const dispatch = useDispatch()
   const cartItems = useSelector(state => state.cart.products)
-  const [totalProducts, setTotalProducts] = useState(0)
-  const [subTotal, setSubTotal] = useState(0)
-
+  const subTotal = useSelector(state => state.cart.total)
 
   const handleRemoveItem = (id) => {
     dispatch(removeProduct(id))
@@ -23,11 +21,6 @@ const Cart = ({handleToggle}) => {
   const handleUpdateQty = (id, qty) => {
     dispatch(updateQty({id, quantity: qty}))
   }
-
-  useEffect(() => {
-    setTotalProducts(cartItems.length)
-    setSubTotal(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0))
-  }, [cartItems, dispatch])
   
   return (
     <div className="cart-wrapper">
@@ -36,7 +29,7 @@ const Cart = ({handleToggle}) => {
           <button className="cart-heading" onClick={handleToggle}>
             <AiOutlineLeft/>
             <span className="heading">Your Cart</span>
-            <span className="cart-num-items">({totalProducts}) items</span>
+            <span className="cart-num-items">({cartItems.length}) items</span>
           </button>
           <Link href="/cart" className="mr-[10px]">
             <button className="font-semibold text-lg" onClick={handleToggle}>View Cart</button>

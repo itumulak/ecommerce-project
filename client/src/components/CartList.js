@@ -12,15 +12,11 @@ import Link from 'next/link'
 const CartList = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.cart.products)
-  const [cartTotal, setCartTotal] = useState(0)
+  const total = useSelector(state => state.cart.total)
 
   const handleProductQtyUpdate = (id, qty) => {
     dispatch(updateQty({id, quantity: qty}))
   }
-
-  useEffect(() => {
-    setCartTotal(products.reduce((acc, item) => acc + item.price * item.quantity, 0))
-  }, [products])
 
   const handleRemoveItem = (id) => {
     dispatch(removeProduct(id))
@@ -69,7 +65,7 @@ const CartList = () => {
             </p>
             <p className="flex flex-row items-center justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">${cartTotal.toFixed(2)}</span>
+              <span className="font-bold">${total.toFixed(2)}</span>
             </p>
             <Link href="/checkout">
               <button className="bg-[#f02d34] text-white text-lg py-2 text-center w-full rounded">Checkout</button>

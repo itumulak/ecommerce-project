@@ -4,6 +4,7 @@ const cartSlice = createSlice({
     name: "cart",
     initialState: {
         products: [],
+        total: 0
     },
     reducers: {
         addProduct: (state, action) => {            
@@ -18,9 +19,12 @@ const cartSlice = createSlice({
                     quantity: action.payload.quantity || 1
                 })
             }
+
+            state.total = computeSubtotal(state.products)
         },
         removeProduct: (state, action) => {
             state.products = state.products.filter(product => product._id !== action.payload)
+            state.total = computeSubtotal(state.products)
         },
         updateQty: (state, action) => {
             const updatedProducts = []
@@ -35,7 +39,8 @@ const cartSlice = createSlice({
                     updatedProducts.push(product)
                 }
             })  
-            state.products = updatedProducts    
+            state.products = updatedProducts   
+            state.total = computeSubtotal(state.products) 
         }
     }
 })
