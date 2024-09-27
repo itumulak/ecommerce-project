@@ -1,53 +1,39 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux';
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-
-import convertToSubcurrency from '@/lib/covertToSubcurrency';
-import CheckoutForm from '@/components/CheckoutForm';
+import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 const page = () => {
-  const total = useSelector(state => state.cart.total)
-  const [clientSecret, setClientSecret] = useState("")
-  const [dpmCheckerLink, setDpmCheckerLink] = useState("")
-  const [comfirmed, setConfirmed] = useState(false)
+  const items = useSelector(state => state.cart.products)
 
-  useEffect(() => {
-    console.log(total, typeof(total));
-    
-    setConfirmed(new URLSearchParams(window.location.search).get("payment_intent") === "succeeded")
-  }, [])
-
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/api/create-payment-intent", {
+  const fetchClientSecret = useCallback(async () => {
+    return await fetch("/api/checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify( { amount: convertToSubcurrency(total) } ),
+      body: JSON.stringify( { items } ),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setClientSecret(data.clientSecret);
-        setDpmCheckerLink(data.dpmCheckerLink)
+      .then((res) => {
+        if (!res.ok) {  
+          throw new Error(res.statusText);
+        }
+
+        return res.json()
       })
+      .then((data) => data.clientSecret)
       .catch((error) => {
         console.error("Error fetching clientSecret:", error);
       });
   }, []);
-
-  const options = {
-    mode: "payment",
-    currency: "usd",
-    amount: convertToSubcurrency(total)
-  };
+  
+  const options = {fetchClientSecret}
 
   return (
-    <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm clientSecret={clientSecret} dpmCheckerLink={dpmCheckerLink} />
-    </Elements>
+    <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+      <EmbeddedCheckout/>
+    </EmbeddedCheckoutProvider>
   )
 }
 

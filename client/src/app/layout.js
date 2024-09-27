@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import "./globals.css";
 
 import Footer from '../components/Footer'
-import ReduxProvider from "@/components/ReduxProvider";
+import ReduxProvider from "../components/ReduxProvider";
 
 const NoSSRNav = dynamic(() => import('../components/Nav'), { ssr: false })
 

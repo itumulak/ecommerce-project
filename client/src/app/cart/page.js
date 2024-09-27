@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-const NoSSR = dynamic(() => import('@/components/CartList'), { ssr: false })
+const NoSSR = dynamic(() => import('../../components/CartList'), { ssr: false })
 
 const cart = () => {
 

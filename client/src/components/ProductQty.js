@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addProduct } from '@/redux/slices/cartSlice';
+import { addProduct } from '../redux/slices/cartSlice';
 import Qty from './Qty';
 
 const ProductQty = ({data}) => {

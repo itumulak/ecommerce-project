@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDelete } from 'react-icons/ai'
 
-import { removeProduct, toggleCart, updateQty } from '@/redux/slices/cartSlice'
-import { urlFor } from '@/lib/client'
+import { removeProduct, toggleCart, updateQty } from '../redux/slices/cartSlice'
+import { urlFor } from '../lib/client'
 import Qty from './Qty'
 
 const Cart = ({handleToggle}) => {

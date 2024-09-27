@@ -1,9 +1,6 @@
 "use client"
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
-
-import { updateQty } from '@/redux/slices/cartSlice'
 
 const Qty = ({quantity, setQuantity}) => {
     let qty = quantity    

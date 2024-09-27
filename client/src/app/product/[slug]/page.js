@@ -2,10 +2,10 @@ import React from 'react'
 import groq from 'groq';
 
 import { client } from "../../../lib/client";
-import { AiFillStar, AiOutlineStar, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { Product } from '@/components';
-import ProductImage from '@/components/ProductImage';
-import ProductQty from '@/components/ProductQty';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import Product from '../../../components/Product';
+import ProductImage from '../../../components/ProductImage';
+import ProductQty from '../../../components/ProductQty';
 
 const page = async ({ params: { slug } }) => {
   const productQuery = groq`
