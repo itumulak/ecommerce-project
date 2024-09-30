@@ -11,7 +11,6 @@ const Nav = () => {
   const products = useSelector(state => state.cart.products)
   const [showCart, setShowCart] = useState(false)  
   
-
   const handleToggle = () => {
     setShowCart(!showCart)
   }
@@ -21,13 +20,23 @@ const Nav = () => {
       <p className="logo">
         <Link href="/">E-commerce</Link>
       </p>
-      <button 
-        className="cart-icon flex flex-row" 
-        onClick={handleToggle}
-      >
-        <AiOutlineShopping fill={`#f02d34`} />
-        <span className="cart-item-qty">{products.length || 0}</span>
-      </button>
+      <ul className="flex flex-row gap-x-8">
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
+        <li>
+          <button 
+            className="cart-icon flex flex-row" 
+            onClick={handleToggle}
+          >
+            <AiOutlineShopping fill={`#f02d34`} />
+            <span className="cart-item-qty">{products.length || 0}</span>
+          </button>
+        </li>
+      </ul>
 
       {showCart && <Cart handleToggle={handleToggle} />}
     </div>

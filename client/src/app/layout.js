@@ -30,10 +30,10 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <header className="h-16">            
+          <header className="flex flex-col justify-center h-16">            
             <NoSSRNav />
           </header>
-          <main className="main-container px-12">
+          <main className="main-container">
             {children}
           </main>
           <footer>

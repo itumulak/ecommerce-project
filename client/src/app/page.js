@@ -15,7 +15,7 @@ const page = async () => {
   const bannerData = await client.fetch(bannerQuery)  
 
   return (
-    <>
+    <div className="px-12">
       <HeroBanner data={bannerData.length > 0 && bannerData[0]}/>
 
       <div className="products-heading">
@@ -30,7 +30,7 @@ const page = async () => {
       </div>
 
       <FooterBanner data={bannerData.length > 0 && bannerData[0]}/> 
-    </>
+    </div>
   )
 }
 
