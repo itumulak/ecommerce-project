@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../lib/firebaseClient";
 
-interface LoginRequestBody {
-    email: string;
-    password: string;
-}
+import { AuthRequestBody  } from "../../../interface/auth";
+import { auth } from "../../../../lib/firebaseClient";
 
 export async function POST(request: Request) {
     try {
-        const body: LoginRequestBody = await request.json();
+        const body: AuthRequestBody = await request.json();
         const { email, password } = body;
 
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
