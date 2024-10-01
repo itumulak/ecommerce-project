@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Product, FooterBanner, HeroBanner } from "../components";
-import { client } from "../lib/client"; 
+import { client } from "../lib/sanityClient"; 
 
 export const revalidate = 60
 export const dynamic = 'force-dynamic'

@@ -1,4 +1,4 @@
-import { urlFor } from '../lib/client'
+import { urlFor } from '../lib/sanityClient'
 import Link from 'next/link'
 import React from 'react'
 

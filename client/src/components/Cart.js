@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDelete } from 'react-icons/ai'
 
 import { removeProduct, toggleCart, updateQty } from '../redux/slices/cartSlice'
-import { urlFor } from '../lib/client'
+import { urlFor } from '../lib/sanityClient'
 import Qty from './Qty'
 
 const Cart = ({handleToggle}) => {
