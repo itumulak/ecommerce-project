@@ -1,14 +1,17 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Stack } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 import InputField from '../../components/InputField';
 import { login } from "../../redux/slices/authSlice";
 
 const page = () => {
     const dispatch = useDispatch()
+    const router = useRouter()
+    const user = useSelector((state) => state.auth.user)
     const [submitting, setSubmitting] = useState(false)
     const [userInput, setUserInput] = useState({email: '', password: ''})
     
@@ -21,6 +24,12 @@ const page = () => {
         setSubmitting(true)
         dispatch(login(userInput))
     }
+
+    useEffect(() => {
+        if ( user ) {
+            router.push('/')
+        }
+    }, [user])
     
     return (
         <div className="flex flex-row">

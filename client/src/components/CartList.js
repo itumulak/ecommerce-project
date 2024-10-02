@@ -3,7 +3,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { urlFor } from '../lib/client'
+import { urlFor } from '../lib/sanityClient'
 import Qty from './Qty'
 import { removeProduct, updateQty } from '../redux/slices/cartSlice'
 import { AiOutlineDelete } from 'react-icons/ai'

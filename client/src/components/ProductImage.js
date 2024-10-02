@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { urlFor } from "../lib/client";
+import { urlFor } from "../lib/sanityClient";
 
 const ProductImage = ({image}) => {
   const [imgIndex, setImgIndex] = useState(0)  

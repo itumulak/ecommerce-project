@@ -12,7 +12,7 @@ export async function POST(request: Request) {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCredential.user.getIdToken();
 
-        const response = NextResponse.json({ user: userCredential.user }, { status: 200 });
+        const response = NextResponse.json({ user: userCredential.user, token: userCredential.user.getIdToken() }, { status: 200 });
         response.cookies.set('token', token, {
             httpOnly: true,
             maxAge: 60 * 60 * 24,

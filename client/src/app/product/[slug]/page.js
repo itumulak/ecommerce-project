@@ -1,7 +1,7 @@
 import React from 'react'
 import groq from 'groq';
 
-import { client } from "../../../lib/client";
+import { client } from "../../../lib/sanityClient";
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import Product from '../../../components/Product';
 import ProductImage from '../../../components/ProductImage';

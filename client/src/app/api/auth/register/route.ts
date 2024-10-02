@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { NextResponse } from "next/server";
 
 import { auth } from "../../../../lib/firebaseClient";
 import { AuthRequestBody } from "../../../interface/auth";
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
     try {
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-            return NextResponse.json({ user: userCredential.user, message: 'User created successfully' }, { status: 200 });
+            return NextResponse.json({ user: userCredential.user, token: userCredential.user.getIdToken(), message: 'User created successfully' }, { status: 200 });
         } catch (error: Error | any) {
             return NextResponse.json({ error: error.message }, { status: 400 });
         }
