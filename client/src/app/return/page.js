@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { CircularProgress } from '@mui/material';
-import { saveOrder, stripeSession } from '../../redux/slices/cartSlice'
+import { emptyCart, saveOrder, stripeSession } from '../../redux/slices/cartSlice'
 
 const page = () => {
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const page = () => {
     const [error, setError] = useState(null)
 
     useEffect(() => {                
-        if (sessionId && ! isMounted.current && typeof user.uid !== 'undefined') {
+        if (sessionId && ! isMounted.current && typeof user?.uid !== 'undefined') {
             isMounted.current = true
             handleFetchSession(sessionId, user.uid)
         }
@@ -39,6 +39,7 @@ const page = () => {
                     }))
                         .then(data => {
                             if ( ! data.error ) {
+                                dispatch(emptyCart())
                                 router.push('/')
                             }
                         })

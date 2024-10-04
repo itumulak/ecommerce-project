@@ -90,6 +90,10 @@ const cartSlice = createSlice({
             })  
             state.products = updatedProducts   
             state.total = computeSubtotal(state.products) 
+        },
+        emptyCart: (state) => {
+            state.products = []
+            state.total = 0
         }
     }
 })
@@ -102,4 +106,4 @@ const computeSubtotal = (products) => {
 }
 
 export default cartSlice.reducer
-export const { addProduct, removeProduct, updateQty } = cartSlice.actions
+export const { addProduct, removeProduct, updateQty, emptyCart } = cartSlice.actions
