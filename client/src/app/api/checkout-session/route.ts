@@ -6,12 +6,16 @@ const stripe =  require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export async function POST(request: Request) {
     try {
-        const { items  } = await request.json();
+        const { items, userId  } = await request.json();
 
         const session = await stripe.checkout.sessions.create({
             ui_mode: "embedded",
             payment_method_types: ["card"],
             mode: "payment",
+            metadata: {
+                userId,
+                source: "firebase"
+            },
             line_items: items.map(item => {
                 return {
                     price_data: {

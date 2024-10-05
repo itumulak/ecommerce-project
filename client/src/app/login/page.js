@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
 import InputField from '../../components/InputField';
-import { login } from "../../redux/slices/authSlice";
+import { login } from '../../redux/actions';
 
 const page = () => {
     const dispatch = useDispatch()

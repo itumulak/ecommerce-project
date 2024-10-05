@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import { CircularProgress } from '@mui/material';
-import { emptyCart, saveOrder, stripeSession } from '../../redux/slices/cartSlice'
+
+import { saveOrderToDB, stripeSession } from '../../redux/actions';
+import { emptyCart } from '../../redux/slices/cartSlice';
 
 const page = () => {
     const dispatch = useDispatch()
@@ -25,14 +27,14 @@ const page = () => {
         }
     }, [user])
 
-    const handleFetchSession = async (sessionId, userId) => {        
+    const handleFetchSession = async ({sessionId, userId}) => {        
         if (! processingOrder ) {
             setProcessingOrder(true)
-            dispatch(stripeSession({sessionId})).then(data => {
+            dispatch(stripeSession({sessionId, userId})).then(data => {
                 if ( ! data.error ) {
                     console.log('saving order');
                     
-                    dispatch(saveOrder({
+                    dispatch(saveOrderToDB({
                         items: data.payload.items.data, 
                         session: data.payload.session,
                         userId

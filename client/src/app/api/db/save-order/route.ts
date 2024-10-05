@@ -1,8 +1,6 @@
-import { NextApiResponse } from "next";
-
-import { connectToDatabase } from "../../../lib/orderMongoDB";
-import Order from "../../models/Order";
 import { NextResponse } from "next/server";
+
+import { connectToDatabase } from "../../../../lib/orderMongoDB";
 
 export async function POST(request: Request) {
     const body = await request.json()
