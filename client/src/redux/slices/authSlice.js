@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { login, register, revalidateToken } from "../actions";
+import { login, logout, register, revalidateToken } from "../actions";
 
 const authSlice =  createSlice({
     name: "auth",
@@ -56,11 +56,12 @@ const authSlice =  createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
             })
-            // .addCase(logout.pending, (state) => {
-            // .addCase(logout.fulfilled, (state) => {
-            //     state.user = null
-            //     state.status = 'idle'
-            // })
+            .addCase(logout.fulfilled, (state) => {
+                state.user = null
+                state.token = null
+                state.isLogin = false
+                state.error = null
+            })
     }
 })
 

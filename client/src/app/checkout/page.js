@@ -10,7 +10,7 @@ const page = () => {
   const items = useSelector(state => state.cart.products)
 
   const fetchClientSecret = useCallback(async () => {
-    return await fetch("/api/checkout-session", {
+    return await fetch("/api/stripe/checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify( { items } ),

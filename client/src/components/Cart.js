@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDelete } from 'react-icons/ai'
 
-import { removeProduct, toggleCart, updateQty } from '../redux/slices/cartSlice'
+import { removeProduct, updateQty } from '../redux/slices/cartSlice'
 import { urlFor } from '../lib/sanityClient'
 import Qty from './Qty'
 

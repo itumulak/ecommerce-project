@@ -55,7 +55,7 @@ export const stripeSession = createAsyncThunk(
     'cart/stripeSession',
     async ({sessionId}, { rejectWithValue }) => {        
         try {
-            const response = await fetch(`/api/stripe/session`, {
+            const response = await fetch(`/api/stripe/retrieve-session`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -140,6 +140,30 @@ export const register = createAsyncThunk(
             if (!response.ok) {
                 throw new Error(data.message || 'Something went wrong')
             }
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+export const logout = createAsyncThunk(
+    'auth/logout',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch('/api/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            const data = await response.json()
+            
+            if (!response.ok) {
+                throw new Error(data.message || 'Something went wrong')
+            }
+
+            return data            
         } catch (error) {
             return rejectWithValue(error.message)
         }
