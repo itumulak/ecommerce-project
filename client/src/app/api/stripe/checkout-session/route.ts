@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import covertToSubcurrency from "../../../util/covertToSubcurrency";
+import covertToSubcurrency from "../../../../util/covertToSubcurrency";
 
 const stripe =  require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 

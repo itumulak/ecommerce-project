@@ -1,8 +1,8 @@
 import { Stripe } from "stripe";
 import { buffer } from "micro";
 
-import { connectToDatabase } from "../../../lib/orderMongoDB";
-import Order from "../../../models/Order";
+import { connectToDatabase } from "../../../../lib/orderMongoDB";
+import Order from "../../../../models/Order";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
