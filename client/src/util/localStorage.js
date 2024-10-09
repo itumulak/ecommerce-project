@@ -1,6 +1,6 @@
 export const localStateFromLocalStorage = () => {
     try {
-        const serializedState = localStorage.getItem('cart');
+        const serializedState = localStorage?.getItem('cart');
 
         if (serializedState === null) {
             return undefined

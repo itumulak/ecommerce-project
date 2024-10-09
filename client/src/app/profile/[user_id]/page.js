@@ -4,10 +4,12 @@ import React from 'react';
 
 import PersonalInfo from '../../../components/PersonalInfo';
 import DashboardSidebar from '../../../components/DashboardSidebar';
+import Protected from '../../../components/Protected'
 
 export default function Page({ params: { user_id } }) {  
     return (
       <div className="flex flex-col gap-4 px-12">
+        <Protected />
         <div className="w-12">
           <h2 className="text-2xl font-bold">Dashboard</h2>
         </div>

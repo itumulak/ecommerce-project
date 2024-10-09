@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { getOrder } from '../../../../../redux/actions';
 import convertToPrice from '../../../../../util/convertToPrice';
 import DashboardSidebar from '../../../../../components/DashboardSidebar'
+import Protected from '../../../../../components/Protected'
 
 const page = ({ params: { order_id, user_id }}) => {
     const dispatch = useDispatch()
@@ -24,6 +25,7 @@ const page = ({ params: { order_id, user_id }}) => {
 
     return (
         <div className="flex flex-col gap-4 px-12">
+            <Protected/>
             <div className="w-12">
                 <h2 className="text-2xl font-bold">Dashboard</h2>
             </div>

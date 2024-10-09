@@ -6,7 +6,7 @@ import { AiOutlineShopping } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
 
 import Cart from './Cart';
-import { revalidateToken } from '../redux/actions';
+import { logout, revalidateToken } from '../redux/actions';
 
 
 const Nav = () => {
@@ -22,6 +22,11 @@ const Nav = () => {
 
   useEffect(() => {
     dispatch(revalidateToken())
+      .then(response => {
+        if( !response.ok ) {
+          dispatch(logout())
+        }
+      })
   }, [])
   
   return (
@@ -34,7 +39,7 @@ const Nav = () => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          {isLogin ? <Link href={`/dashboard/${user?.uid}`}>Dashboard</Link> : <Link href="/login">Login</Link>}
+          {isLogin ? <Link href={`/profile/${user?.uid}`}>Profile</Link> : <Link href="/login">Login</Link>}
         </li>
         <li>
           <button 
