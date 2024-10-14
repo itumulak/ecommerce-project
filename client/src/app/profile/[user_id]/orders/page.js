@@ -35,7 +35,7 @@ const page = ({ params: { user_id }}) => {
           <Box>
               <Typography variant="h6">My Orders</Typography>
               {orderList && orderList.map((order) => (
-                <ListItem className="hover:cursor-pointer" button="true" key={order._id} onClick={() => router.push(`/dashboard/${order.userId}/orders/${order._id}`)}>
+                <ListItem className="hover:cursor-pointer" button="true" key={order._id} onClick={() => router.push(`/profile/${order.userId}/orders/${order._id}`)}>
                     <ListItemText className="flex flex-row justify-between" primary={`Order #${order._id}`} secondary={`$${convertToPrice(order.amountTotal)}`} />
                 </ListItem>
               ))}

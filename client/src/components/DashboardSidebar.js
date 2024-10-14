@@ -22,11 +22,11 @@ const DashboardSidebar = ({ userId }) => {
 
     return (
         <ul>
-            <ListItem className="hover:cursor-pointer" button="true" onClick={() => router.push(`/dashboard/${userId}`)}>
+            <ListItem className="hover:cursor-pointer" button="true" onClick={() => router.push(`/profile/${userId}`)}>
                 <ListItemIcon><PersonIcon /></ListItemIcon>
                 <ListItemText primary="Personal Information" />
             </ListItem>
-            <ListItem className="hover:cursor-pointer" button="true" onClick={() => router.push(`/dashboard/${userId}/orders`)}>
+            <ListItem className="hover:cursor-pointer" button="true" onClick={() => router.push(`/profile/${userId}/orders`)}>
                 <ListItemIcon><InventoryIcon /></ListItemIcon>
                 <ListItemText primary="My Orders" />
             </ListItem>

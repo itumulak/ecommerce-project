@@ -4,13 +4,13 @@ export const getOrders = createAsyncThunk(
     'db/getOrders',
     async ({user_id: userId}, { rejectWithValue }) => {        
         try {
-            const response = await fetch(`/api/db/get-orders`, {
+            // const response = await fetch(`/api/db/get-orders`, {
+            const response = await fetch(`/api/db/get-orders-from-firestore`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({userId})
-                
             })
 
             const data = await response.json()
@@ -30,7 +30,7 @@ export const getOrder = createAsyncThunk(
     'db/getOrder',
     async ({userId, orderId}, { rejectWithValue }) => {        
         try {
-            const response = await fetch(`/api/db/get-order`, {
+            const response = await fetch(`/api/db/get-order-from-firestore`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -80,7 +80,8 @@ export const saveOrderToDB = createAsyncThunk(
     'cart/saveOrder',
     async ({items, session, userId}, { rejectWithValue }) => {
         try {
-            const response = await fetch('/api/db/save-order', {
+            // const response = await fetch('/api/db/save-order', {
+            const response = await fetch('/api/db/save-order-to-firebase', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

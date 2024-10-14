@@ -22,11 +22,11 @@ const Nav = () => {
 
   useEffect(() => {
     dispatch(revalidateToken())
-      .then(response => {
-        if( !response.ok ) {
-          dispatch(logout())
-        }
-      })
+      // .then(response => {
+      //   if( !response.ok ) {
+      //     dispatch(logout())
+      //   }
+      // })
   }, [])
   
   return (

@@ -23,13 +23,15 @@ const page = () => {
     useEffect(() => {                
         if (sessionId && ! isMounted.current && typeof user?.uid !== 'undefined') {
             isMounted.current = true
-            handleFetchSession(sessionId, user.uid)
+            handleFetchSession({sessionId, userId: user?.uid})
         }
     }, [user])
 
     const handleFetchSession = async ({sessionId, userId}) => {        
         if (! processingOrder ) {
             setProcessingOrder(true)
+            console.log(sessionId, userId);
+            
             dispatch(stripeSession({sessionId, userId})).then(data => {
                 if ( ! data.error ) {
                     console.log('saving order');
