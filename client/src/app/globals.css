@@ -584,11 +584,6 @@ span.text-red {
   align-items: center;
 }
 
-.product-detail-desc .buttons {
-  display: flex;
-  gap: 20px;
-}
-
 .buttons .add-to-cart {
   padding: 10px 20px;
   border: 1px solid #f02d34;
@@ -840,10 +835,6 @@ span.text-red {
   }
 
   .buttons .add-to-cart {
-    width: 150px;
-  }
-
-  .buttons .buy-now {
     width: 150px;
   }
 

@@ -12,7 +12,7 @@ const ProductImage = ({image}) => {
   }
 
   return (
-    <div className="image-container">
+    <div className="image-container flex flex-col items-center md:items-baseline md:w-6/12">
         <img src={Array.isArray(image) ? urlFor(image[imgIndex]).url() : urlFor(image).url()} alt="product" className="product-detail-image" />
         {Array.isArray(image) && image.length > 1 && (
           <div className="small-images-container">
