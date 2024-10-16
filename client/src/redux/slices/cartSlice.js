@@ -50,8 +50,7 @@ const cartSlice = createSlice({
 })
 
 const computeSubtotal = (products) => {
-    return products.reduce((acc, product) => {
-        console.log(product);        
+    return products.reduce((acc, product) => {     
         return acc + (product.price * product.quantity)
     }, 0)
 }

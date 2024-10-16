@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getOrders = createAsyncThunk(
     'db/getOrders',
-    async ({user_id: userId}, { rejectWithValue }) => {        
+    async ({userId}, { rejectWithValue }) => {        
         try {
             // const response = await fetch(`/api/db/get-orders`, {
             const response = await fetch(`/api/db/get-orders-from-firestore`, {

@@ -17,7 +17,7 @@ const DashboardSidebarMobile = ({userId}) => {
     }
 
     return (
-        <>
+        <div className="block lg:hidden">
             <button className="absolute p-2 left-0 bg-red-300 rounded-r" style={{top: `${(0.1 * window.innerHeight) + 15}px`}} onClick={handleShowMobileSidebar}>
                 <KeyboardDoubleArrowRightIcon/>
             </button>
@@ -32,7 +32,7 @@ const DashboardSidebarMobile = ({userId}) => {
                 </div>
             )}
             
-        </>
+        </div>
     )
 }
 

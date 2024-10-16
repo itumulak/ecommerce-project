@@ -30,7 +30,6 @@ const ProcessOrder = () => {
     const handleFetchSession = async ({sessionId, userId}) => {        
         if (! processingOrder ) {
             setProcessingOrder(true)
-            console.log(sessionId, userId);
             
             dispatch(stripeSession({sessionId, userId})).then(data => {
                 if ( ! data.error ) {
