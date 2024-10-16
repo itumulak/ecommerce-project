@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import InputField from "./InputField";
 import StrengthMeter from "./StrengthMeter";
-import { register } from "../redux/slices/authSlice";
+import { register } from "../redux/actions";
 import { calculatePasswordStrength } from "../util/calculatePasswordStrength";
 
 const RegisterForm = () => {
