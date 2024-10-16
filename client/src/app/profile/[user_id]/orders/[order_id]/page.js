@@ -8,6 +8,7 @@ import { getOrder } from '../../../../../redux/actions';
 import convertToPrice from '../../../../../util/convertToPrice';
 import DashboardSidebar from '../../../../../components/DashboardSidebar'
 import Protected from '../../../../../components/Protected'
+import DashboardSidebarMobile from '../../../../../components/DashboardSidebarMobile';
 
 const page = ({ params: { order_id, user_id }}) => {
     const dispatch = useDispatch()
@@ -26,14 +27,15 @@ const page = ({ params: { order_id, user_id }}) => {
     return (
         <div className="flex flex-col gap-4 px-12">
             <Protected/>
+            <DashboardSidebarMobile userId={user_id} />
             <div className="w-12">
                 <h2 className="text-2xl font-bold">Dashboard</h2>
             </div>
             <div className="flex flex-row gap-6">
-                <div className="w-3/12">
+                <div className="hidden lg:block lg:w-3/12">
                     <DashboardSidebar userId={user_id} />
                 </div>
-                <div className="w-9/12">
+                <div className="wp-12/12 lg:w-9/12">
                     <Box className="flex flex-col gap-4">
                         <Typography variant="h6">Order Details</Typography>
                         <Typography>Order #{order_id}</Typography>
