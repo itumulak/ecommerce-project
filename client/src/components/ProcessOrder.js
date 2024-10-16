@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, Suspense } from 'react'
 import { useRouter } from "next/navigation";
 import { useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,11 +14,10 @@ const ProcessOrder = () => {
     const isMounted = useRef(false)
     const router = useRouter()
     const user = useSelector(state => state.auth.user)
-    const searchParams = useSearchParams()
-    const sessionId = searchParams?.get('session_id')
     const [processingOrder, setProcessingOrder] = useState(false)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [sessionId, setSessionId] = useState(null)
 
     useEffect(() => {                
         if (sessionId && ! isMounted.current && typeof user?.uid !== 'undefined') {
@@ -26,6 +25,11 @@ const ProcessOrder = () => {
             handleFetchSession({sessionId, userId: user?.uid})
         }
     }, [user])
+
+    const GetSessionId = () => {
+        const searchParams = useSearchParams()
+        setSessionId(searchParams.get('session_id'))
+    }
 
     const handleFetchSession = async ({sessionId, userId}) => {        
         if (! processingOrder ) {
@@ -53,6 +57,9 @@ const ProcessOrder = () => {
 
     return (
         <div className="text-center">
+            <Suspense>
+                <GetSessionId />
+            </Suspense>
             {loading && <div className="flex flex-col gap-4"><CircularProgress className="m-auto" />Processing your order... Please wait. </div>}
         </div>
     )
