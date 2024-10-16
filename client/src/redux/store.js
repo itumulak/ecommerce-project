@@ -4,14 +4,14 @@ import cartReducer from './slices/cartSlice';
 import authReducer from './slices/authSlice';
 import { localStateFromLocalStorage, saveStateToLocalStorage } from "../util/localStorage";
 
-const preloadedState = localStateFromLocalStorage()
+// const preloadedState = localStateFromLocalStorage()
 
 const store = configureStore({
     reducer: {
         cart: cartReducer,
         auth: authReducer
     },
-    preloadedState
+    // preloadedState
 })
 
 store.subscribe(() => {
