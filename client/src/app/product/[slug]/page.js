@@ -38,7 +38,7 @@ const page = async ({ params: { slug } }) => {
           <h2>You may also like</h2>
           <div className="marquee">
             <div className="maylike-products-container">
-                {recommendedProducts.map((item) => <Product data={item}/>)}
+                {recommendedProducts.map((item) => <Product key={item._id} data={item}/>)}
             </div>
           </div>
         </div>

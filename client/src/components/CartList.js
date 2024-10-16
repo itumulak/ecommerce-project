@@ -36,8 +36,8 @@ const CartList = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map(product => (
-                <tr>
+              {products.map((product, index) => (
+                <tr key={index}>
                   <td>
                     <div className="flex flex-row items-center gap-6">
                       <img width={60} height={60} src={urlFor(product.image[0]).url()} alt={product.title} />

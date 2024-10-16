@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import InventoryIcon from '@mui/icons-material/Inventory';
