@@ -16,7 +16,7 @@ export const getOrders = createAsyncThunk(
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data
@@ -41,7 +41,7 @@ export const getOrder = createAsyncThunk(
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data
@@ -66,7 +66,7 @@ export const stripeSession = createAsyncThunk(
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data
@@ -91,7 +91,7 @@ export const saveOrderToDB = createAsyncThunk(
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data
@@ -114,8 +114,8 @@ export const login = createAsyncThunk(
             })
 
             const data = await response.json()
-            if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+            if (!response.ok) {             
+                throw new Error(data.error || 'Something went wrong')
             }
             return data
         } catch (error) {
@@ -139,7 +139,7 @@ export const register = createAsyncThunk(
             const data = await response.json()
             
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
         } catch (error) {
             return rejectWithValue(error.message)
@@ -161,7 +161,7 @@ export const logout = createAsyncThunk(
             const data = await response.json()
             
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data            
@@ -185,7 +185,7 @@ export const revalidateToken = createAsyncThunk(
             const data = await response.json()
 
             if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong')
+                throw new Error(data.error || 'Something went wrong')
             }
 
             return data

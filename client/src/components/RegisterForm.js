@@ -16,6 +16,7 @@ const RegisterForm = () => {
     const [userInput, setUserInput] = useState({email: '', password: '', confirmPassword: ''})    
     const [passwordError, setPasswordError] = useState('');
     const [passwordStrength, setPasswordStrength] = useState(0);
+    const [error, setError] = useState(null)
 
     const handleChange = (value, name) => {
         setUserInput({ ...userInput, [name]: value })
@@ -32,6 +33,12 @@ const RegisterForm = () => {
         setPasswordError('')
         setSubmitting(true)
         dispatch(register(userInput))
+            .then(response => {
+                if (response.error) {
+                    setError(response.payload)
+                    setSubmitting(false)
+                }
+            })
     }
 
     useEffect(() => {
@@ -42,6 +49,11 @@ const RegisterForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {error &&
+                <Grow in>
+                    <Alert severity="error">{error}</Alert>
+                </Grow>
+            }
             <Stack direction="column" spacing={3}>
                 {passwordError && <Grow in={true}><Alert variant="filled" severity="error">{passwordError}</Alert></Grow>}
                 <InputField 
