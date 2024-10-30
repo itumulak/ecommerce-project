@@ -1,12 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { Button, Stack } from '@mui/material';
+import { Button, Grid2 as Grid, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
 import InputField from '../components/InputField';
 import { login } from '../redux/actions';
+import Link from 'next/link';
 
 const LoginForm = () => {
     const dispatch = useDispatch()
@@ -53,6 +54,15 @@ const LoginForm = () => {
                     onChange={e => handleChange(e.target.value, 'password')}
                 />
                 <Button disabled={submitting} type="submit" variant="contained" color="primary" size="large" fullWidth>Login</Button>
+                <Grid container className="!block text-center">
+                    <Grid item>
+                        <Link href="/register" passHref>
+                            <Button>
+                                Don't have an account? Sign Up.
+                            </Button>
+                        </Link>
+                    </Grid>
+                </Grid>
             </Stack>
         </form>
     )
