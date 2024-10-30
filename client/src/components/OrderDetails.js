@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useDispatch } from 'react-redux';
 
 import { getOrder } from '../redux/actions';
@@ -27,26 +27,28 @@ const OrderDetails = ({userId, orderId}) => {
             <Typography>Order #{orderId}</Typography>
             <Typography>Amount: {order && `$${convertToPrice(order.amountTotal)}`}</Typography>
             {order?.items && (
-                <table className="table-auto border-spacing-2 w-full">
-                    <thead className="after:h-6 after:block text-left">
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th className="text-center">Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Product</TableCell>
+                                <TableCell>Price</TableCell>
+                                <TableCell>Quantity</TableCell>
+                                <TableCell>Total</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                         {order?.items.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.title}</td>
-                                <td>${convertToPrice(item.price)}</td>
-                                <td className="text-center">{item.quantity}</td>
-                                <td>${convertToPrice(item.amount)}</td>
-                            </tr>
+                            <TableRow key={index}>
+                                <TableCell>{item.title}</TableCell>
+                                <TableCell>${convertToPrice(item.price)}</TableCell>
+                                <TableCell>{item.quantity}</TableCell>
+                                <TableCell>${convertToPrice(item.amount)}</TableCell>
+                            </TableRow>
                         ))}
-                    </tbody>
-                </table>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             )}
         </Box>
     )
