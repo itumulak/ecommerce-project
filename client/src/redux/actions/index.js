@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, current } from "@reduxjs/toolkit";
 
 export const getOrders = createAsyncThunk(
     'db/getOrders',
@@ -184,6 +184,31 @@ export const revalidateToken = createAsyncThunk(
 
             const data = await response.json()
 
+            if (!response.ok) {
+                throw new Error(data.error || 'Something went wrong')
+            }
+
+            return data
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+export const updateLoginData = createAsyncThunk(
+    'auth/updateUserData',
+    async ({ email, currentEmail, password, confirmPassword, fullName, currentFullName }, { rejectWithValue }) => {
+        try {
+            const response = await fetch('/api/auth/update/login', {            
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, currentEmail,password, confirmPassword, fullName, currentFullName })
+            })
+
+            const data = await response.json()
+            
             if (!response.ok) {
                 throw new Error(data.error || 'Something went wrong')
             }
