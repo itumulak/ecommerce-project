@@ -27,12 +27,13 @@ const OrderList = ({userId}) => {
     return (
         <Box>
             <Typography variant="h6">My Orders</Typography>
-            <TableContainer component={Paper}>
+            <TableContainer className="mt-4" component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Product ID</TableCell>
                             <TableCell>Amount Total</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -50,21 +51,6 @@ const OrderList = ({userId}) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <List>
-            {orderList && orderList.map((order) => (
-                <ListItem 
-                className="hover:cursor-pointer" 
-                button="true" 
-                key={order._id} 
-                onClick={() => router.push(`/profile/${order.userId}/orders/${order._id}`)}>
-                    <ListItemText 
-                    className="flex flex-row justify-between items-center gap-5" 
-                    primary={`Order #${order._id}`} 
-                    secondary={`$${convertToPrice(order.amountTotal)}`} 
-                    />
-                </ListItem>
-            ))}
-            </List>
         </Box>
     )
 }

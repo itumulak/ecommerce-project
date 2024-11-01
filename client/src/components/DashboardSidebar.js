@@ -6,7 +6,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { logout } from '../redux/actions';
 
