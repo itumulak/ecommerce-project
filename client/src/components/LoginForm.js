@@ -37,7 +37,7 @@ const LoginForm = () => {
         if ( user ) {
             router.push('/')
         }
-    }, [user])
+    }, [user, router])
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -70,7 +70,7 @@ const LoginForm = () => {
                     <Grid item>
                         <Link href="/register" passHref>
                             <Button>
-                                Don't have an account? Sign Up.
+                                No account? Sign Up.
                             </Button>
                         </Link>
                     </Grid>
