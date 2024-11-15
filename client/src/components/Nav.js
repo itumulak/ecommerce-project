@@ -27,7 +27,7 @@ const Nav = () => {
       //     dispatch(logout())
       //   }
       // })
-  }, [])
+  }, [dispatch])
   
   return (
     <div className="navbar-container">

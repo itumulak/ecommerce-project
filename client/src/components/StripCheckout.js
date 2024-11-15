@@ -27,7 +27,7 @@ const StripCheckout = () => {
         .catch((error) => {
             console.error("Error fetching clientSecret:", error);
         });
-    }, []);
+    }, [items]);
     
     const options = {fetchClientSecret}
     

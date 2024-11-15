@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
+import Image from 'next/image';
 
 import { urlFor } from "../lib/sanityClient";
 
@@ -13,11 +14,11 @@ const ProductImage = ({image}) => {
 
   return (
     <div className="image-container flex flex-col items-center md:items-baseline md:w-6/12">
-        <img src={Array.isArray(image) ? urlFor(image[imgIndex]).url() : urlFor(image).url()} alt="product" className="product-detail-image" />
+        <Image src={Array.isArray(image) ? urlFor(image[imgIndex]).url() : urlFor(image).url()} alt="product" className="product-detail-image" />
         {Array.isArray(image) && image.length > 1 && (
           <div className="small-images-container">
               {image.map((item, i) => (
-                  <img onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className={`small-image ${i === imgIndex ? 'selected-image' : ''}`} />
+                  <Image onClick={(e) => handleImgIndex(e, i)} key={i} src={urlFor(item).url()} alt="product" className={`small-image ${i === imgIndex ? 'selected-image' : ''}`} />
               ))}
           </div>
         )}        

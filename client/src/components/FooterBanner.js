@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { urlFor } from "../lib/sanityClient";
 
 const FooterBanner = ({data: { discount, largeText1, largeText2, saleTime, smallText, midText, desc, product, buttonText, image }}) => {
   return (
     <div className="mt-[120px] py-[100px] px-[40px] lg:h-[400px] text-white w-full bg-[#f02d34] rounded-2xl relative">
-      <img 
+      <Image 
           src={urlFor(image).url()} 
           alt="headphones" 
           className="block lg:absolute lg:top-[-25%] lg:left-[25%]" 

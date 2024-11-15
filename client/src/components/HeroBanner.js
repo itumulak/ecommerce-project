@@ -1,11 +1,13 @@
-import { urlFor } from '../lib/sanityClient'
-import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import { urlFor } from '../lib/sanityClient'
 
 const HeroBanner = ({data: {smallText, midText, largeText, buttonText, image, desc, product}}) => {
   return (
     <div className="py-24 px-12 bg-[#dcdcdc] rounded-2xl relative">
-      <img 
+      <Image 
         src={urlFor(image).url()} 
         alt="headphones" 
         className="lg:absolute lg:w-[450px] lg:h-[450px] lg:top-0 lg:right-[20%]" 

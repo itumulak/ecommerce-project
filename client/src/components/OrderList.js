@@ -22,7 +22,7 @@ const OrderList = ({userId}) => {
                     setOrderList(respond.payload.orders);
                 }        
             })
-    }, [])
+    }, [dispatch, userId])
 
     return (
         <Box>

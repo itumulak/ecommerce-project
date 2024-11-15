@@ -22,7 +22,7 @@ const PersonalInfo = () => {
 
   useEffect(() => {
     setLoginData({...loginData, email: user?.email, currentEmail: user?.email, currentFullName: user?.providerData[0].displayName})
-  }, [user])
+  }, [user, loginData])
 
   const handleChangeLoginData = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value })

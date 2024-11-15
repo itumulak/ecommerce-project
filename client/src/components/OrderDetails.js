@@ -19,7 +19,7 @@ const OrderDetails = ({userId, orderId}) => {
                     setOrder(data.payload.order)
                 }
             })
-    }, [dispatch])
+    }, [dispatch, orderId, userId])
 
     return (
         <Box className="flex flex-col gap-4">

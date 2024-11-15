@@ -4,6 +4,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDelete } from 'react-icons/ai'
+import Image from 'next/image'
 
 import { removeProduct, updateQty } from '../redux/slices/cartSlice'
 import { urlFor } from '../lib/sanityClient'
@@ -52,7 +53,7 @@ const Cart = ({handleToggle}) => {
             <div className="product-container">
               {cartItems?.map(item => (
                 <div className="product" key={item._id}>
-                  <img src={urlFor(item?.image[0])} className="cart-product-image" />
+                  <Image src={urlFor(item?.image[0])} className="cart-product-image" />
                   <div className="w-full flex flex-col gap-y-4">
                     <div className="flex flex-row justify-between font-bold">
                       <h5>{item.title}</h5>

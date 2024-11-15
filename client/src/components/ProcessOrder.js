@@ -24,7 +24,7 @@ const ProcessOrder = () => {
             isMounted.current = true
             handleFetchSession({sessionId, userId: user?.uid})
         }
-    }, [user])
+    }, [user, sessionId])
 
     const GetSessionId = () => {
         const searchParams = useSearchParams()

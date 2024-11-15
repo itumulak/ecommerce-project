@@ -2,12 +2,13 @@
 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { urlFor } from '../lib/sanityClient'
-import Qty from './Qty'
 import { removeProduct, updateQty } from '../redux/slices/cartSlice'
 import { AiOutlineDelete } from 'react-icons/ai'
 import Link from 'next/link'
+import Image from 'next/image'
+
+import Qty from './Qty'
 
 const CartList = () => {
   const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const CartList = () => {
                 <tr key={index}>
                   <td>
                     <div className="flex flex-row items-center gap-6">
-                      <img width={60} height={60} src={urlFor(product.image[0]).url()} alt={product.title} />
+                      <Image width={60} height={60} src={urlFor(product.image[0]).url()} alt={product.title} />
                       <span className="font-bold">{product.title}</span>
                     </div>
                   </td>

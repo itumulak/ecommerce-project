@@ -12,7 +12,7 @@ const Protected = () => {
         if (!isLogin) {
             router.push('/')
         }
-    }, [isLogin])
+    }, [isLogin, router])
 }
 
 export default Protected
